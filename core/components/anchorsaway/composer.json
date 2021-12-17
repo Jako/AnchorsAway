@@ -1,0 +1,20 @@
+{
+  "name": "treehillstudio/anchorsaway",
+  "description": "Consent management platform for MODX",
+  "authors": [
+    {
+      "name": "Thomas Jakobi",
+      "email": "office@treehillstudio.com",
+      "homepage": "https://treehillstudio.com"
+    }
+  ],
+  "license": "proprietary",
+  "require": {
+    "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "TreehillStudio\\AnchorsAway\\": "src/"
+    }
+  }
+}
