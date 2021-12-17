@@ -9,7 +9,7 @@ attribute by option.
 
 AnchorsAway uses the following system settings in the namespace `anchorsaway`:
    
-Property | Description | Default
------ | ------------------------------------------------------------- | -------
+Setting | Description | Default
+------- | ----------- | -------
 add_data_anchor | Add data-anchor attribute to the link. | No
 debug | Log debug information in the MODX error log. | No
