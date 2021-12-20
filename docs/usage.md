@@ -1,9 +1,10 @@
 ## How it works
 
-This plugin searches for `href="#<whatever>"` strings in html attributes and
-replaces the anchor link with relative link to the current resource followed by
-the anchor. The original href attribute content can be added as data-anchor
-attribute by option.
+This MODX extra fixes anchor links in a MODX Revolution installation that uses a
+base attribute. The plugin searches for `href="#<whatever>"` strings in html
+attributes and replaces the anchor link with relative link to the current
+resource followed by the anchor. The original href attribute content can be
+added as data-anchor attribute by option.
 
 ## System Settings
 

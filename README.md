@@ -1,6 +1,6 @@
 # AnchorsAway
 
-Base URL anchor fix.
+Base URL anchor fix for MODX Revolution
 
 ## Credits
 
