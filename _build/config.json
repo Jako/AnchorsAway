@@ -9,8 +9,8 @@
       "plugins": [
         {
           "name": "AnchorsAway",
+          "description": "Base URL anchor fix",
           "file": "anchorsaway.plugin.php",
-          "description": "AnchorsAway plugin",
           "events": [
             "OnWebPagePrerender"
           ]
