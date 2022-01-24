@@ -1,5 +1,4 @@
 const gulp = require('gulp'),
-    format = require('date-format'),
     replace = require('gulp-replace'),
     pkg = require('./_build/config.json');
 
@@ -49,11 +48,6 @@ gulp.task('bump-requirements', function () {
         .pipe(gulp.dest('.'));
 });
 gulp.task('bump', gulp.series('bump-copyright', 'bump-version', 'bump-docs', 'bump-requirements'));
-
-gulp.task('watch', function () {
-    // Watch .js files
-    gulp.watch(['source/js/**/*.js'], gulp.series('scripts-mgr'));
-});
 
 // Default Task
 gulp.task('default', gulp.series('bump'));
