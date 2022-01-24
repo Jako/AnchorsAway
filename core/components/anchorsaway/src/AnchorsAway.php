@@ -10,16 +10,7 @@
 
 namespace TreehillStudio\AnchorsAway;
 
-use ConsentfriendPurposes;
-use ConsentfriendServicePurposes;
-use ConsentfriendServices;
-use modManagerController;
-use modRestResponse;
-use modTransportPackage;
-use modTransportProvider;
 use modX;
-use Psr\Http\Message\ResponseInterface;
-use xPDO;
 
 /**
  * Class AnchorsAway
