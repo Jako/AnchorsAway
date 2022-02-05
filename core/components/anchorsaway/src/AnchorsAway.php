@@ -61,6 +61,7 @@ class AnchorsAway
         $corePath = $this->getOption('core_path', $options, $this->modx->getOption('core_path', null, MODX_CORE_PATH) . 'components/' . $this->namespace . '/');
         $assetsPath = $this->getOption('assets_path', $options, $this->modx->getOption('assets_path', null, MODX_ASSETS_PATH) . 'components/' . $this->namespace . '/');
         $assetsUrl = $this->getOption('assets_url', $options, $this->modx->getOption('assets_url', null, MODX_ASSETS_URL) . 'components/' . $this->namespace . '/');
+        $modxversion = $this->modx->getVersionData();
 
         // Load some default paths for easier management
         $this->options = array_merge([
@@ -87,6 +88,7 @@ class AnchorsAway
         // Add default options
         $this->options = array_merge($this->options, [
             'debug' => (bool)$this->modx->getOption($this->namespace . '.debug', null, '0') == 1,
+            'modxversion' => $modxversion['version'],
         ]);
 
         $lexicon = $this->modx->getService('lexicon', 'modLexicon');
@@ -102,7 +104,7 @@ class AnchorsAway
      * namespaced system setting; by default this value is null.
      * @return mixed The option value or the default value specified.
      */
-    public function getOption(string $key, $options = [], $default = null)
+    public function getOption($key, $options = [], $default = null)
     {
         $option = $default;
         if (!empty($key) && is_string($key)) {
