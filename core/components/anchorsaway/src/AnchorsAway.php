@@ -2,7 +2,7 @@
 /**
  * AnchorsAway classfile
  *
- * Copyright 2021 by Thomas Jakobi <office@treehillstudio.com>
+ * Copyright 2021-2023 by Thomas Jakobi <office@treehillstudio.com>
  *
  * @package anchorsaway
  * @subpackage classfile
@@ -39,7 +39,7 @@ class AnchorsAway
      * The version
      * @var string $version
      */
-    public $version = '1.0.0';
+    public $version = '1.0.1';
 
     /**
      * The class options

@@ -21,7 +21,8 @@ class OnWebPagePrerender extends Plugin
                     'id' => $this->modx->resource->get('id')
                 ]));
             }
-            $replacement = '$1' . $this->modx->makeUrl($this->modx->resource->get('id')) . '$3';
+            $requestParameter = $this->modx->request->getParameters();
+            $replacement = '$1' . $this->modx->makeUrl($this->modx->resource->get('id'), $this->modx->resource->get('context_key'), $requestParameter) . '$3';
             if ($this->anchorsaway->getOption('add_data_anchor')) {
                 $replacement .= ' data-anchor=$2$3';
             }

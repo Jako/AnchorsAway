@@ -2,7 +2,7 @@
 /**
  * AnchorsAway
  *
- * Copyright 2021 by Thomas Jakobi <office@treehillstudio.com>
+ * Copyright 2021-2023 by Thomas Jakobi <office@treehillstudio.com>
  *
  * @package anchorsaway
  * @subpackage classfile
