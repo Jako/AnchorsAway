@@ -2,7 +2,7 @@
 /**
  * AnchorsAway classfile
  *
- * Copyright 2021-2023 by Thomas Jakobi <office@treehillstudio.com>
+ * Copyright 2021-2026 by Thomas Jakobi <office@treehillstudio.com>
  *
  * @package anchorsaway
  * @subpackage classfile
@@ -39,7 +39,7 @@ class AnchorsAway
      * The version
      * @var string $version
      */
-    public $version = '1.0.1';
+    public $version = '1.0.2';
 
     /**
      * The class options
@@ -86,8 +86,9 @@ class AnchorsAway
 
         // Add default options
         $this->options = array_merge($this->options, [
-            'debug' => (bool)$this->modx->getOption($this->namespace . '.debug', null, '0') == 1,
+            'debug' => $this->getBooleanOption('debug', [], false),
             'modxversion' => $modxversion['version'],
+            'add_data_anchor' => $this->getBooleanOption('add_data_anchor', [], false),
         ]);
 
         $lexicon = $this->modx->getService('lexicon', 'modLexicon');
@@ -116,5 +117,19 @@ class AnchorsAway
             }
         }
         return $option;
+    }
+
+    /**
+     * Get Boolean Option
+     *
+     * @param string $key
+     * @param array $options
+     * @param mixed $default
+     * @return bool
+     */
+    public function getBooleanOption($key, $options = [], $default = null)
+    {
+        $option = $this->getOption($key, $options, $default);
+        return ($option === 'true' || $option === true || $option === '1' || $option === 1);
     }
 }

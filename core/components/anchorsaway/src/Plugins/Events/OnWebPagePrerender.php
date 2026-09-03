@@ -12,21 +12,26 @@ class OnWebPagePrerender extends Plugin
 {
     public function process()
     {
-        if ($this->modx->resource->get('id') != $this->modx->config['site_start']) {
+        $resouce = $this->modx->resource;
+        if ($resouce->get('id') != $this->modx->config['site_start']) {
             $pattern = '/(href=([\'"]))(#.*?\2)/';
             if ($this->anchorsaway->getOption('debug')) {
-                $count = preg_match_all($pattern, $this->modx->resource->_output);
+                $count = preg_match_all($pattern, $resouce->_output);
                 $this->modx->log(\xPDO::LOG_LEVEL_ERROR, $this->modx->lexicon('anchorsaway.log_message', [
                     'count' => $count,
-                    'id' => $this->modx->resource->get('id')
+                    'id' => $resouce->get('id')
                 ]));
             }
             $requestParameter = $this->modx->request->getParameters();
-            $replacement = '$1' . $this->modx->makeUrl($this->modx->resource->get('id'), $this->modx->resource->get('context_key'), $requestParameter) . '$3';
+            if ($resouce->getProperty('generate_url', 'anchorsaway', '1') === '1') {
+                $replacement = '$1' . $this->modx->makeUrl($resouce->get('id'), $resouce->get('context_key'), $requestParameter) . '$3';
+            } else {
+                $replacement = '$1' . str_replace('$', '\$', $this->modx->stripTags($_REQUEST[$this->modx->getOption('request_param_alias')])) . '$3';
+            }
             if ($this->anchorsaway->getOption('add_data_anchor')) {
                 $replacement .= ' data-anchor=$2$3';
             }
-            $this->modx->resource->_output = preg_replace($pattern, $replacement, $this->modx->resource->_output);
+            $resouce->_output = preg_replace($pattern, $replacement, $resouce->_output);
         }
     }
 }

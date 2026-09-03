@@ -1,7 +1,19 @@
 const gulp = require('gulp'),
+    composer = require('gulp-uglify/composer'),
+    concat = require('gulp-concat'),
+    format = require('date-format'),
+    header = require('@fomantic/gulp-header'),
+    order = require('ordered-read-streams'),
     replace = require('gulp-replace'),
+    uglifyjs = require('uglify-js'),
+    uglify = composer(uglifyjs, console),
     pkg = require('./_build/config.json');
 
+const banner = '/*!\n' +
+    ' * <%= pkg.name %> - <%= pkg.description %>\n' +
+    ' * Version: <%= pkg.version %>\n' +
+    ' * Build date: ' + format('yyyy-MM-dd', new Date()) + '\n' +
+    ' */';
 const year = new Date().getFullYear();
 
 let phpversion;
@@ -16,6 +28,18 @@ pkg.dependencies.forEach(function (dependency, index) {
             break;
     }
 });
+
+const scriptsMgr = function () {
+    return order([
+        gulp.src('source/js/mgr/anchorsaway.js'),
+        gulp.src('source/js/mgr/helper/combo.js'),
+    ])
+        .pipe(concat('anchorsaway.min.js'))
+        .pipe(uglify())
+        .pipe(header(banner + '\n', { pkg: pkg }))
+        .pipe(gulp.dest('assets/components/anchorsaway/js/mgr/'))
+};
+gulp.task('scripts', gulp.series(scriptsMgr));
 
 const bumpCopyright = function () {
     return gulp.src([
@@ -50,4 +74,4 @@ const bumpRequirements = function () {
 gulp.task('bump', gulp.series(bumpCopyright, bumpVersion, bumpDocs, bumpRequirements));
 
 // Default Task
-gulp.task('default', gulp.series('bump'));
+gulp.task('default', gulp.series('bump', 'scripts'));
