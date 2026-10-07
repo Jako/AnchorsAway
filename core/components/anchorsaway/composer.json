@@ -1,6 +1,7 @@
 {
   "name": "treehillstudio/anchorsaway",
   "description": "Consent management platform for MODX",
+  "version": "1.0.2",
   "authors": [
     {
       "name": "Thomas Jakobi",
